@@ -40,9 +40,9 @@ export default function WelcomeScreen({ onSelect }) {
 
          
         
-        <div className="flex flex-col items-center gap-8 w-full">
+        <div className="flex flex-col items-center gap-8 w-full mt-4">
 
-          <div className="flex items-center gap-8 opacity-40 select-none">
+          <div className="flex items-center gap-8 opacity-40 select-none p-4">
              <FormatHint icon={<FilePdfIcon size={28} />} label="PDF" />
              <FormatHint icon={<FileDocIcon size={28} />} label="DOCX" />
              <FormatHint icon={<FileZipIcon size={28} />} label="ASIC-E" />

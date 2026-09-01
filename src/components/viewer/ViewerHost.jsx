@@ -14,7 +14,7 @@ import {
 export default function ViewerHost({ file }) {
   if (!file) return null;
   
-  // Обробка контейнерів (Джерел)
+  // Обробка контейнерів
   if (file.isContainer) {
     return <ContainerInfo file={file} />;
   }
@@ -32,7 +32,7 @@ export default function ViewerHost({ file }) {
     return <PdfViewer file={file} />;
   }
 
-  // 3. Сучасний Word (.docx)
+  // 3. Word (.docx)
   if (ext === 'docx') {
     return <DocxViewer file={file} />;
   }

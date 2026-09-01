@@ -45,7 +45,6 @@ function App() {
             <ViewerArea 
               selectedFile={selectedFile} 
               onRemove={removeFile}
-              onResolveDetached={handleFiles}
             />
           </>
         ) : (

@@ -28,7 +28,6 @@ export default function DropOverlay({ onLeave, onDrop }) {
       const deltaX = clientX - eyeCenterX;
       const deltaY = clientY - eyeCenterY;
 
-      // Амплітуда руху зіниці
       const maxDistanceX = 6;
       const maxDistanceY = 3.5;
 
