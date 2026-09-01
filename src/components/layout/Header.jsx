@@ -1,9 +1,18 @@
-import { EyeIcon, ShieldCheckIcon, GitCommitIcon } from '@phosphor-icons/react';
+import { 
+  EyeIcon, 
+  ShieldCheckIcon, 
+  GitCommitIcon, 
+  GithubLogoIcon 
+} from '@phosphor-icons/react';
 
 export default function Header() {
+  // Отримуємо версію, яку ми визначили у vite.config.js
+  const appVersion = import.meta.env.APP_VERSION || '0.0.0';
+
   return (
     <header className="h-16 border-b border-slate-200 bg-white flex items-center px-8 justify-between z-20 shrink-0">
-
+      
+      {/* Ліва частина: Логотип */}
       <div className="flex items-center gap-3 select-none">
         <div className="relative">
           <div className="w-10 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
@@ -24,12 +33,24 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="hidden md:flex items-center gap-2 opacity-40">
-        <GitCommitIcon size={14} weight="bold" className="text-slate-400" />
-        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 mt-1">
-          v1.0.4 rdy
-        </span>
-      </div>
+      {/* Права частина: Версія та GitHub */}
+      <a 
+        href="https://github.com/Niarosss/SignPeek" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="flex items-center gap-4 group cursor-pointer"
+      >
+        <div className="hidden md:flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+          <GitCommitIcon size={14} weight="bold" className="text-slate-400" />
+          <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 mt-1">
+            v{appVersion} rdy
+          </span>
+        </div>
+        
+        <div className="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
+          <GithubLogoIcon size={18} weight="bold" />
+        </div>
+      </a>
     </header>
   );
 }
