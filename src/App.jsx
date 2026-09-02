@@ -1,3 +1,4 @@
+// src/App.jsx
 import { useFiles } from './hooks/useFiles';
 import Header from './components/layout/Header';
 import WelcomeScreen from './components/layout/WelcomeScreen';
@@ -21,10 +22,18 @@ function App() {
   const hasFiles = files.length > 0;
 
   return (
-    <div className="h-screen flex flex-col bg-[#F8FAFC] font-sans text-slate-900 text-[14px]">
+    <div 
+      className="h-screen flex flex-col bg-[#F8FAFC] font-sans text-slate-900 text-[14px] relative"
+      onDragEnter={(e) => {
+        e.preventDefault();
+        setIsDragging(true);
+      }}
+      onDragOver={(e) => {
+        e.preventDefault();
+      }}
+    >
       <Header />
 
-      {/* Перемикач екранів */}
       {hasFiles ? (
         <Workspace 
           files={files}
@@ -40,7 +49,6 @@ function App() {
         <WelcomeScreen onSelect={handleFiles} />
       )}
 
-      {/* Оверлей залишаємо в App, щоб він працював поверх обох станів */}
       {isDragging && (
         <DropOverlay 
           onLeave={() => setIsDragging(false)} 

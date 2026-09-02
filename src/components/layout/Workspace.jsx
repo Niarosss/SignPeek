@@ -14,7 +14,6 @@ export default function Workspace({
   getFileIcon 
 }) {
   return (
-    /* overflow-hidden тут фіксує сайдбар та в'ювер */
     <div className="flex-1 flex overflow-hidden relative">
       <Sidebar 
         files={files} 

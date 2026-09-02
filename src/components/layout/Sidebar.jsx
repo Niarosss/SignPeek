@@ -97,7 +97,7 @@ export default function Sidebar({
                 <div 
                   onClick={() => onSelect(file)}
                   className='
-                    flex items-center gap-3 pl-3 h-[60px] transition-all mb-1'  
+                    flex items-center gap-3 pl-3 h-15 transition-all mb-1'  
                 >
                   {/* Іконка файлу */}
                   <div className={`

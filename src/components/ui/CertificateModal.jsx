@@ -12,7 +12,7 @@ export default function CertificateModal({ isOpen, onClose, info }) {
 
   return (
     <div 
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-200 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
@@ -65,7 +65,7 @@ function InfoItem({ icon, label, value }) {
       <div className="mt-1 text-slate-500 bg-slate-100/50 p-2 rounded-xl shrink-0">{icon}</div>
       <div className="min-w-0">
         <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">{label}</p>
-        <p className="text-[13px] font-bold text-slate-700 leading-tight break-words">{value}</p>
+        <p className="text-[13px] font-bold text-slate-700 leading-tight wrap-break-word">{value}</p>
       </div>
     </div>
   );

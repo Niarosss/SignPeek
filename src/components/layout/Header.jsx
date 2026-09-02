@@ -6,13 +6,11 @@ import {
 } from '@phosphor-icons/react';
 
 export default function Header() {
-  // Отримуємо версію, яку ми визначили у vite.config.js
   const appVersion = import.meta.env.APP_VERSION || '0.0.0';
 
   return (
     <header className="h-16 border-b border-slate-200 bg-white flex items-center px-8 justify-between z-20 shrink-0">
       
-      {/* Ліва частина: Логотип */}
       <div className="flex items-center gap-3 select-none">
         <div className="relative">
           <div className="w-10 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
@@ -27,13 +25,12 @@ export default function Header() {
           <h1 className="font-black text-xl leading-none tracking-tighter text-slate-800">
             Sign<span className="text-slate-600 font-black">Peek</span>
           </h1>
-          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1 leading-none">
-            Зручний перегляд документів
+          <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold mt-1 leading-none">
+            Більше ніж просто перегляд документів
           </p>
         </div>
       </div>
 
-      {/* Права частина: Версія та GitHub */}
       <a 
         href="https://github.com/Niarosss/SignPeek" 
         target="_blank" 

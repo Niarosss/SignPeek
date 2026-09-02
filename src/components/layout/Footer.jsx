@@ -10,6 +10,9 @@ import FeatureItem from '../ui/FeatureItem';
 export default function Footer() {
   const appVersion = import.meta.env.APP_VERSION || '1.0.4';
 
+  const currentYear = new Date().getFullYear();
+  const startYear = 2026;
+
   return (
     <footer className="w-full bg-[#0B0F1A] text-white shrink-0">
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col justify-center min-h-125">
@@ -55,7 +58,7 @@ export default function Footer() {
               <span className="opacity-20">/</span>
               <span>MIT License</span>
               <span className="opacity-20">/</span>
-              <span className="text-slate-600">© 2026 SignPeek</span>
+              <span className="text-slate-600">© {startYear === currentYear ? startYear : `${startYear}–${currentYear}`} SignPeek</span>
             </div>
           </div>
 

@@ -106,7 +106,7 @@ function ContainerInfo({ file }) {
           <p className="text-sm text-slate-500 leading-relaxed font-medium">
             Це <span className="text-slate-900 font-bold">від'єднаний цифровий підпис</span>. Він містить лише криптографічні дані та сертифікат підписувача.
           </p>
-          <div className="bg-indigo-50/50 border border-indigo-100 p-5 rounded-[2rem] text-[11px] text-indigo-600 font-bold uppercase tracking-wider leading-normal">
+          <div className="bg-indigo-50/50 border border-indigo-100 p-5 rounded-4xl text-[11px] text-indigo-600 font-bold uppercase tracking-wider leading-normal">
             Для перегляду змісту завантажте оригінальний файл документа окремо
           </div>
         </div>
