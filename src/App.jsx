@@ -1,10 +1,8 @@
 import { useFiles } from './hooks/useFiles';
 import Header from './components/layout/Header';
-import Sidebar from './components/layout/Sidebar';
+import WelcomeScreen from './components/layout/WelcomeScreen';
+import Workspace from './components/layout/Workspace';
 import DropOverlay from './components/layout/DropOverlay';
-import ViewerArea from './components/viewer/ViewerArea';
-import WelcomeScreen from './components/viewer/WelcomeScreen';
-import CertificateModal from './components/ui/CertificateModal';
 import { ImageIcon, FileTextIcon, FileCodeIcon, WarningCircleIcon } from '@phosphor-icons/react';
 
 function App() {
@@ -23,47 +21,32 @@ function App() {
   const hasFiles = files.length > 0;
 
   return (
-    <div className="h-screen flex flex-col bg-[#F8FAFC] font-sans text-slate-900 overflow-hidden text-[14px]">
+    <div className="h-screen flex flex-col bg-[#F8FAFC] font-sans text-slate-900 text-[14px]">
       <Header />
 
-      <div 
-        className="flex-1 flex overflow-hidden relative"
-        onDragEnter={() => setIsDragging(true)}
-      >
-        {hasFiles ? (
-          <>
-            <Sidebar 
-              files={files} 
-              selectedFile={selectedFile} 
-              onSelect={setSelectedFile} 
-              onRemove={removeFile}
-              onCheckSignature={setActiveSignatureInfo}
-              getFileIcon={getFileIcon}
-              onExport={exportFiles}
-            />
+      {/* Перемикач екранів */}
+      {hasFiles ? (
+        <Workspace 
+          files={files}
+          selectedFile={selectedFile}
+          setSelectedFile={setSelectedFile}
+          removeFile={removeFile}
+          exportFiles={exportFiles}
+          activeSignatureInfo={activeSignatureInfo}
+          setActiveSignatureInfo={setActiveSignatureInfo}
+          getFileIcon={getFileIcon}
+        />
+      ) : (
+        <WelcomeScreen onSelect={handleFiles} />
+      )}
 
-            <ViewerArea 
-              selectedFile={selectedFile} 
-              onRemove={removeFile}
-            />
-          </>
-        ) : (
-          <WelcomeScreen onSelect={handleFiles} />
-        )}
-
-        {isDragging && (
-          <DropOverlay 
-            onLeave={() => setIsDragging(false)} 
-            onDrop={handleFiles} 
-          />
-        )}
-      </div>
-
-      <CertificateModal 
-        isOpen={!!activeSignatureInfo} 
-        onClose={() => setActiveSignatureInfo(null)} 
-        info={activeSignatureInfo} 
-      />
+      {/* Оверлей залишаємо в App, щоб він працював поверх обох станів */}
+      {isDragging && (
+        <DropOverlay 
+          onLeave={() => setIsDragging(false)} 
+          onDrop={handleFiles} 
+        />
+      )}
     </div>
   );
 }

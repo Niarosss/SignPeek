@@ -13,7 +13,7 @@ export default function ViewerToolbar({ file, onRemove }) {
         <a 
           href={file.url} 
           download={file.name}
-          className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-slate-600 transition-all shadow-sm active:scale-95"
+          className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-600 transition-all shadow-sm active:scale-95"
         >
           <DownloadSimpleIcon size={16} weight="bold" />
           <span>Зберегти {file.extension?.toUpperCase()}</span>
@@ -23,7 +23,7 @@ export default function ViewerToolbar({ file, onRemove }) {
 
         <button
           onClick={() => onRemove(file.id)}
-          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all active:scale-90"
+          className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all active:scale-90"
           title="Закрити документ"
         >
           <TrashIcon size={20} weight="bold" />
