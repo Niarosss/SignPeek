@@ -4,7 +4,7 @@ export default function ViewerToolbar({ file, onRemove }) {
   return (
     <div className="h-14 border-b border-slate-200 bg-white flex items-center justify-between px-6 shrink-0 z-10">
       <div className="flex items-center gap-3 min-w-0">
-        <span className="text-[13px] font-bold text-slate-700 truncate select-all">
+        <span className="text-sm font-bold text-slate-700 truncate select-all">
           {file.name}
         </span>
       </div>
@@ -13,7 +13,7 @@ export default function ViewerToolbar({ file, onRemove }) {
         <a 
           href={file.url} 
           download={file.name}
-          className="flex items-center gap-2 bg-slate-900 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-600 transition-all shadow-sm active:scale-95"
+          className="flex items-center gap-2 bg-slate-800 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-600 transition-all shadow-sm active:scale-95"
         >
           <DownloadSimpleIcon size={16} weight="bold" />
           <span>Зберегти {file.extension?.toUpperCase()}</span>

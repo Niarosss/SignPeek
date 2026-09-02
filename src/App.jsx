@@ -1,4 +1,5 @@
 // src/App.jsx
+import { useEffect } from 'react';
 import { useFiles } from './hooks/useFiles';
 import Header from './components/layout/Header';
 import WelcomeScreen from './components/layout/WelcomeScreen';
@@ -12,6 +13,28 @@ function App() {
     activeSignatureInfo, setActiveSignatureInfo, handleFiles, removeFile, exportFiles 
   } = useFiles();
 
+  useEffect(() => {
+    const handlePaste = (event) => {
+      const items = event.clipboardData?.items;
+      if (!items) return;
+
+      const pastedFiles = [];
+      for (let item of items) {
+        if (item.kind === 'file') {
+          const file = item.getAsFile();
+          if (file) pastedFiles.push(file);
+        }
+      }
+
+      if (pastedFiles.length > 0) {
+        handleFiles(pastedFiles);
+      }
+    };
+
+    window.addEventListener('paste', handlePaste);
+    return () => window.removeEventListener('paste', handlePaste);
+  }, [handleFiles]);
+
   const getFileIcon = (file) => {
     if (file.isDetached) return <WarningCircleIcon size={24} weight="duotone" className="text-amber-500" />;
     if (file.mimeType?.includes('image')) return <ImageIcon size={24} weight="duotone" className="text-indigo-500" />;
@@ -23,7 +46,7 @@ function App() {
 
   return (
     <div 
-      className="h-screen flex flex-col bg-[#F8FAFC] font-sans text-slate-900 text-[14px] relative"
+      className="h-screen flex flex-col bg-[#F8FAFC] text-slate-900 font-sans antialiased tracking-tight relative"
       onDragEnter={(e) => {
         e.preventDefault();
         setIsDragging(true);

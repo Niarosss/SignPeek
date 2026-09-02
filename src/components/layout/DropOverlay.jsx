@@ -60,12 +60,12 @@ export default function DropOverlay({ onLeave, onDrop }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-slate-700/60 backdrop-blur-sm p-4 animate-in fade-in duration-200 "
+      className="fixed inset-0 z-50 bg-slate-500/30 backdrop-blur-sm p-4 animate-in fade-in duration-200 "
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className=" bg-slate-50/60 border-2 border-slate-700 border-dashed rounded-3xl w-full h-full flex items-center justify-center relative">
+      <div className=" bg-slate-50/70 border-2 border-slate-700 border-dashed rounded-3xl w-full h-full flex items-center justify-center relative">
       <div className="flex flex-col items-center gap-6 pointer-events-none transform scale-100 transition-all duration-300">
         
         <div ref={eyeRef} className="flex items-center justify-center">
@@ -89,10 +89,10 @@ export default function DropOverlay({ onLeave, onDrop }) {
         </div>
 
         <div className="space-y-2 text-center">
-          <p className="text-2xl font-bold text-slate-800 tracking-tight">
+          <p className="text-3xl font-bold text-slate-800 tracking-tight">
             Імпорт документів
           </p>
-          <p className="text-md font-medium uppercase tracking-normal text-slate-500 ">
+          <p className="text-md font-medium tracking-normal text-slate-600 ">
             Відпустіть для початку
           </p>
         </div>

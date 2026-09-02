@@ -25,7 +25,7 @@ export default function Header() {
           <h1 className="font-black text-xl leading-none tracking-tighter text-slate-800">
             Sign<span className="text-slate-600 font-black">Peek</span>
           </h1>
-          <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold mt-1 leading-none">
+          <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1 leading-none">
             Більше ніж просто перегляд документів
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function Header() {
         rel="noopener noreferrer"
         className="flex items-center gap-4 group cursor-pointer"
       >
-        <div className="hidden md:flex items-center gap-2 opacity-40 group-hover:opacity-100 transition-opacity">
+        <div className="hidden md:flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
           <GitCommitIcon size={14} weight="bold" className="text-slate-400" />
           <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 mt-1">
             v{appVersion} rdy

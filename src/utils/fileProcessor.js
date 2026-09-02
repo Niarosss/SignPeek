@@ -54,6 +54,7 @@ export async function processIncomingFile(file, parentId = null, depth = 0) {
       isContainer: true,
       isSigned: !!commonSignatureInfo,
       signatureInfo: commonSignatureInfo,
+      size: buffer.byteLength,
       extension,
       depth
     });
@@ -88,6 +89,7 @@ export async function processIncomingFile(file, parentId = null, depth = 0) {
       isContainer: true,
       isSigned: sigData.success && sigData.signers?.length > 0,
       signatureInfo: sigData.signers,
+      size: buffer.byteLength,
       extension,
       depth
     });

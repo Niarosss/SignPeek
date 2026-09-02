@@ -71,7 +71,7 @@ export default function ViewerHost({ file }) {
       <WarningCircleIcon size={48} weight="thin" className="mx-auto mb-4 text-slate-300" />
       <h3 className="text-lg font-bold text-slate-700">{file.name}</h3>
       <p className="text-slate-400 mb-6 text-sm">Перегляд цього формату недоступний</p>
-      <a href={file.url} download={file.name} className="bg-slate-100 text-slate-600 px-6 py-2 rounded-xl font-bold text-xs uppercase hover:bg-slate-200 transition-colors">
+      <a href={file.url} download={file.name} className="bg-slate-200 text-slate-600 px-6 py-2 rounded-xl font-semibold text-xs uppercase tracking-wide hover:bg-slate-300 transition-colors">
         Завантажити
       </a>
     </div>

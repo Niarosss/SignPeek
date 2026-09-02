@@ -8,7 +8,7 @@ export default function FeatureItem({ icon: Icon, title, desc, iconColor }) {
         <h4 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-100 mb-1">
           {title}
         </h4>
-        <p className="text-[9px] md:text-[10px] text-slate-500 font-bold uppercase leading-tight tracking-tight max-w-35 md:max-w-45">
+        <p className="text-[9px] md:text-[10px] text-slate-400 font-semibold uppercase leading-tight tracking-wide max-w-35 md:max-w-45">
           {desc}
         </p>
       </div>

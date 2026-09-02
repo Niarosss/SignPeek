@@ -47,10 +47,9 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center md:items-end gap-2 md:gap-8">
           
           <div className="text-center md:text-left space-y-4">
-            {/* Двоколірне Лого в футері */}
             <h2 className="text-4xl md:text-8xl lg:text-9xl font-black tracking-tighter select-none leading-none">
-              <span className="text-slate-50 opacity-50">Sign</span>
-              <span className="text-slate-500 opacity-50">Peek</span>
+              <span className="text-slate-50 opacity-70">Sign</span>
+              <span className="text-slate-500 opacity-70">Peek</span>
             </h2>
             
             <div className="flex flex-wrap justify-center md:justify-start gap-4 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500">
@@ -58,7 +57,7 @@ export default function Footer() {
               <span className="opacity-20">/</span>
               <span>MIT License</span>
               <span className="opacity-20">/</span>
-              <span className="text-slate-600">© {startYear === currentYear ? startYear : `${startYear}–${currentYear}`} SignPeek</span>
+              <span className="text-slate-400">© {startYear === currentYear ? startYear : `${startYear}–${currentYear}`} SignPeek</span>
             </div>
           </div>
 
@@ -76,8 +75,8 @@ export default function Footer() {
               </div>
             </a>
             
-            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600">
-              Developed by <span className="text-slate-400">Niaros</span>
+            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
+              Developed by <span className="text-slate-300">Niaros</span>
             </p>
           </div>
         </div>
