@@ -15,9 +15,9 @@ export default function WelcomeScreen({ onSelect }) {
   return (
     <div className="w-full relative">
       
-      <section className="relative min-h-[calc(100vh-64px)] w-full flex flex-col items-center justify-center px-6 bg-[#F8FAFC] z-20 shadow-2xl shrink-0 border-b border-slate-100">
+      <section className="relative min-h-[calc(100vh-64px)] w-full flex flex-col items-center justify-center px-6 bg-[#F8FAFC] z-20 shadow-2xl shrink-0 border-b border-slate-100 p-2 md:p-4">
       
-        <div className="max-w-3xl w-full text-center flex flex-col items-center py-10 md:py-16">
+        <div className="max-w-3xl w-full text-center flex flex-col items-center">
           
           <div className="relative group mb-10">
             <div className="size-20 md:size-24 bg-white rounded-4xl shadow-2xl shadow-indigo-100 flex items-center justify-center border border-white transition-transform hover:scale-105 duration-500">
