@@ -99,7 +99,7 @@ export default function ImageViewer({ file }) {
       >
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1 bg-white/90 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1.5">
+            <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1.5">
               <ToolbarButton 
                 onClick={() => zoomOut()} 
                 icon={<MagnifyingGlassMinusIcon size={20} weight="bold" />} 

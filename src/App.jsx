@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div 
-      className="h-screen flex flex-col bg-[#F8FAFC] text-slate-900 font-sans antialiased tracking-tight relative"
+      className="h-dvh flex flex-col bg-[#F8FAFC] text-slate-900 font-sans antialiased tracking-tight relative"
       onDragEnter={(e) => { e.preventDefault(); setIsDragging(true); }}
       onDragOver={(e) => e.preventDefault()}
     >
