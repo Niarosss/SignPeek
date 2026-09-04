@@ -92,7 +92,7 @@ export default function Sidebar({
 
                     <button 
                       onClick={(e) => { e.stopPropagation(); onRemove(file.id); }} 
-                      className="ml-auto opacity-0 group-hover:opacity-100 p-1 text-slate-300 hover:text-red-500 transition-all"
+                      className="ml-auto md:opacity-0 md:group-hover:opacity-100 p-1 text-slate-300 hover:text-red-500 transition-all"
                     >
                       <XIcon size={14} weight="bold" />
                     </button>
@@ -140,7 +140,7 @@ export default function Sidebar({
                     </p>
                   </div>
 
-                  <div className="flex items-center opacity-0 group-hover:opacity-100 transition-all gap-0.5 ml-auto">
+                  <div className="flex items-center md:opacity-0 md:group-hover:opacity-100 transition-all gap-0.5 ml-auto">
                     <button
                       onClick={(e) => { e.stopPropagation(); onExport(file.id); }}
                       className="p-1.5 text-slate-400 hover:text-slate-600 transition-all active:scale-90"

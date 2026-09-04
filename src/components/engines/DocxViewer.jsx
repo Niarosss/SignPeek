@@ -21,6 +21,14 @@ export default function DocxViewer({ file }) {
             ignoreHeight: false,  
             breakPages: true,     
           });
+
+          const paragraphs = containerRef.current.querySelectorAll('section.docx p');
+          paragraphs.forEach((p) => {
+            const marginLeft = parseFloat(window.getComputedStyle(p).marginLeft);
+            if (marginLeft > 180) {
+              p.classList.add('docx-header-right');
+            }
+          });
         } catch (error) {
           console.error("Помилка рендерингу DOCX:", error);
         }
@@ -31,7 +39,7 @@ export default function DocxViewer({ file }) {
   }, [file]);
 
   return (
-    <div className="w-full h-full overflow-auto bg-[#E2E8F0] custom-scrollbar flex justify-center p-0 md:p-6">
+    <div className="w-full h-full overflow-y-auto bg-[#E2E8F0] custom-scrollbar flex justify-center p-0 md:p-6 touch-pan-y">
       <style>{`
         .docx-wrapper {
           background-color: transparent !important;
@@ -41,6 +49,7 @@ export default function DocxViewer({ file }) {
           align-items: center !important;
           gap: 16px !important;
           width: 100% !important;
+          overflow: visible !important;
         }
         
         .docx-wrapper section.docx {
@@ -52,6 +61,7 @@ export default function DocxViewer({ file }) {
           box-sizing: border-box !important;
           position: relative !important;
           padding: 16px !important;
+          overflow: visible !important;
         }
 
         @media (min-width: 768px) {
@@ -60,10 +70,31 @@ export default function DocxViewer({ file }) {
           }
         }
 
+        @media (max-width: 767px) {
+          .docx-wrapper p.docx-header-right {
+            margin-left: auto !important;
+            margin-right: 0 !important;
+            width: fit-content !important;
+            max-width: 75% !important;
+            text-align: left !important;
+          }
+
+          .docx-wrapper section.docx p,
+          .docx-wrapper section.docx span {
+            word-break: normal !important;
+            overflow-wrap: break-word !important;
+            white-space: normal !important;
+          }
+
+          .docx-wrapper .docx-tab {
+            display: none !important;
+          }
+        }
+
         .docx-wrapper table {
           max-width: 100% !important;
+          width: 100% !important;
           table-layout: auto !important;
-          word-break: break-word !important;
         }
 
         .docx-wrapper img {
