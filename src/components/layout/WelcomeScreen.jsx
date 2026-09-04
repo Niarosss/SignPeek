@@ -55,27 +55,21 @@ export default function WelcomeScreen({ onSelect }) {
               </button>
             )}
 
-            <div className="flex items-center justify-center gap-2 text-slate-500/80 select-none px-4">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">
-                Перетягніть
-              </span>
+            <div className="flex items-center justify-center gap-2 text-slate-500/80 text-[10px] font-semibold uppercase tracking-[0.2em] xl:[@media(min-height:850px)]:tracking-[0.25em] select-none">
+              Перетягніть
               
-              <span className="opacity-20 font-light text-base">/</span>
+              <span className="opacity-20 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
               
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">
-                  Вставте
-                </span>
+                Вставте
                 <span className="text-[9px] font-mono bg-slate-200/70 h-4 text-slate-500 px-1 rounded border border-slate-300/40 lowercase tracking-normal flex items-center">
                   ctrl+v
                 </span>
               </div>
 
-              <span className="opacity-20 font-light text-base">/</span>
+              <span className="opacity-20 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em]">
-                Оберіть файл
-              </span>
+              Оберіть файл
             </div>
 
             <input 
@@ -94,7 +88,7 @@ export default function WelcomeScreen({ onSelect }) {
           </div>
         </div>
 
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-20 animate-bounce hidden [@media(min-height:800px)]:block">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-20 animate-bounce hidden [@media(min-height:700px)]:block">
           <div className="w-px h-8 bg-slate-900" />
         </div>
       </section>
