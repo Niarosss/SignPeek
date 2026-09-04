@@ -74,7 +74,6 @@ SignPeek побудований на принципі **Local Data Processing**:
 /src
   /components
     /layout       # Каркас додатка: Header, Sidebar, Footer
-    /viewer       # Логіка в'ювера: Host, Toolbar, WelcomeScreen
     /ui           # Атомарні компоненти: Кнопки, Модалки
     /engines      # Двигуни рендерингу (PDF, Docx, Image, Xlsx)
   /hooks          # Кастомні хуки (useFiles для керування станом)

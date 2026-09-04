@@ -17,7 +17,7 @@ export default function Header( { onMenuClick, hasFiles }) {
         {hasFiles && (
           <button
             onClick={onMenuClick}
-            className="lg:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer"
+            className="md:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer"
             title="Відкрити список документів"
           >
             <ListIcon size={24} weight="bold" />

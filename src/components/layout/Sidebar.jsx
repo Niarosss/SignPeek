@@ -6,14 +6,14 @@ export default function Sidebar({
 
   return (
     <aside className={`
-      /* Мобільні стилі */
+      /* до 768px */
       fixed inset-0 z-60 w-full bg-white flex flex-col transition-transform duration-300
       ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-      /* Десктоп стилі */
-      lg:relative lg:translate-x-0 lg:w-80 lg:z-10 lg:border-r lg:border-slate-200/60
+      /* від 768px */
+      md:relative md:translate-x-0 md:w-80 md:z-10 md:border-r md:border-slate-200/60
     `}>
-      <div className="p-5 shrink-0 flex flex-col gap-4 border-b border-slate-50 lg:border-none">
-        <div className="flex items-center justify-between lg:hidden">
+      <div className="p-4 shrink-0 flex flex-col gap-4 border-b border-slate-50 md:border-none">
+        <div className="flex items-center justify-between md:hidden">
            <button onClick={onClose} className="p-2 -ml-2 text-slate-400 active:scale-90 transition-transform">
               <ArrowLeftIcon size={24} weight="bold" />
            </button>

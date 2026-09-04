@@ -65,7 +65,7 @@ function App() {
           <>
             {isSidebarOpen && (
               <div 
-                className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 lg:hidden animate-in fade-in duration-300"
+                className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 md:hidden animate-in fade-in duration-300"
                 onClick={() => setIsSidebarOpen(false)}
               />
             )}
