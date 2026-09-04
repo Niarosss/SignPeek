@@ -55,7 +55,7 @@ export default function WelcomeScreen({ onSelect }) {
               </button>
             )}
 
-            <div className="flex items-center justify-center gap-2 text-slate-500/80 text-[10px] font-semibold uppercase tracking-[0.2em] xl:[@media(min-height:850px)]:tracking-[0.25em] select-none">
+            <div className="flex items-center justify-center gap-1 md:gap-2 text-slate-500/80 text-[10px] font-semibold uppercase tracking-[0.2em] xl:[@media(min-height:850px)]:tracking-[0.25em] select-none">
               Перетягніть
               
               <span className="opacity-20 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>

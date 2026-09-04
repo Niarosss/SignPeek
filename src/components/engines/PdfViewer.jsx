@@ -34,7 +34,7 @@ export default function PdfViewer({ file }) {
   return (
     <div className="relative w-full h-full bg-slate-200/50 flex flex-col overflow-hidden">
 
-      <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1.5">
+      <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1 md:p-1.5">
         <ToolbarButton 
           onClick={() => setScale(s => Math.max(s - 0.2, 0.4))} 
           icon={<MagnifyingGlassMinusIcon size={20} weight="bold" />} 
@@ -97,7 +97,7 @@ export default function PdfViewer({ file }) {
 function LoadingSpinner() {
   return (
     <div className="flex flex-col items-center justify-center py-20">
-      <CircleNotchIcon size={40} className="animate-spin text-indigo-500 mb-4" />
+      <CircleNotchIcon size={40} className="animate-spin text-slate-500 mb-4" />
       <p className="text-slate-500 font-bold">Завантаження PDF...</p>
     </div>
   );

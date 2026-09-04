@@ -50,7 +50,7 @@ export default function CertificateModal({ isOpen, onClose, info }) {
         </div>
         
         <div className="bg-slate-50 px-8 py-4 border-t border-slate-100">
-          <p className="text-[9px] text-slate-400 font-bold tracking-widest text-center">
+          <p className="text-[10px] text-slate-500 font-semibold tracking-wider text-center">
             Дані отримано безпосередньо з криптографічного контейнера
           </p>
         </div>

@@ -25,7 +25,7 @@ export default function ViewerToolbar({ file, onRemove }) {
 
         <button
           onClick={() => onRemove(file.id)}
-          className="p-2 text-slate-400 hover:text-red-500 bg-red-50 rounded-xl transition-all active:scale-90 cursor-pointer"
+          className="p-2 text-slate-600 hover:text-red-500 bg-red-100 hover:bg-red-200 rounded-xl transition-all active:scale-90 cursor-pointer"
           title="Закрити документ"
         >
           <TrashIcon size={20} weight="bold" />

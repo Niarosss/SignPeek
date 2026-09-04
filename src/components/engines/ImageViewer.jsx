@@ -5,7 +5,8 @@ import UTIF from 'utif';
 import { 
   MagnifyingGlassPlusIcon, 
   MagnifyingGlassMinusIcon, 
-  ArrowClockwiseIcon, 
+  ArrowClockwiseIcon,
+  ArrowsInSimpleIcon,
   CircleNotchIcon
 } from '@phosphor-icons/react';
 import ToolbarButton from '../ui/ToolbarButton';
@@ -99,22 +100,18 @@ export default function ImageViewer({ file }) {
       >
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
-            <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1.5">
+            <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1 md:p-1.5">
               <ToolbarButton 
                 onClick={() => zoomOut()} 
                 icon={<MagnifyingGlassMinusIcon size={20} weight="bold" />} 
                 title="Зменшити" 
               />
               
-              <div 
-                className="px-3 py-1 cursor-pointer hover:bg-slate-50 rounded-lg transition-colors"
-                onClick={() => resetTransform()}
-                title="Скинути зум"
-              >
-                <span className="text-[10px] font-black uppercase tracking-tighter text-slate-500 tabular-nums">
-                  100%
-                </span>
-              </div>
+              <ToolbarButton 
+                onClick={() => resetTransform()} 
+                icon={<ArrowsInSimpleIcon size={20} weight="bold" />} 
+                title="Скинути масштаб" 
+              />
 
               <ToolbarButton 
                 onClick={() => zoomIn()} 
