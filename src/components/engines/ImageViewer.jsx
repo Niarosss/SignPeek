@@ -78,11 +78,10 @@ export default function ImageViewer({ file }) {
     <div className="relative w-full h-full flex flex-col bg-slate-100">
        <TransformWrapper
         initialScale={1}
-        minScale={0.6}
+        minScale={0.7}
         maxScale={2}
         centerOnInit={true}
         centerZoomedOut={true}
-        limitToBounds={true}
         smooth={true}
         wheel={{ 
           step: 0.002,

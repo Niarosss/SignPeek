@@ -13,6 +13,14 @@ export default function PdfViewer({ file }) {
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(1.0);
 
+  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setContainerWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     setNumPages(null);
   }, [file.url]);
@@ -72,8 +80,9 @@ export default function PdfViewer({ file }) {
                 <Page 
                   pageNumber={index + 1} 
                   scale={scale}
-                  renderTextLayer={true}
-                  renderAnnotationLayer={true}
+                  width={containerWidth < 816 ? containerWidth - 32 : undefined}
+                  renderTextLayer={false}
+                  renderAnnotationLayer={false}
                   loading=""
                 />
               </div>

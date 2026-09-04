@@ -11,7 +11,7 @@ export default function DocxViewer({ file }) {
     }
 
     const renderDocx = async () => {
-      if (file.blob && containerRef.current) {
+      if (file?.blob && containerRef.current) {
         try {
           containerRef.current.innerHTML = '';
           await renderAsync(file.blob, containerRef.current, null, {
@@ -31,7 +31,7 @@ export default function DocxViewer({ file }) {
   }, [file]);
 
   return (
-    <div className="w-full h-full overflow-auto bg-[#E2E8F0] custom-scrollbar">
+    <div className="w-full h-full overflow-auto bg-[#E2E8F0] custom-scrollbar flex justify-center p-0 md:p-6">
       <style>{`
         .docx-wrapper {
           background-color: transparent !important;
@@ -39,27 +39,40 @@ export default function DocxViewer({ file }) {
           display: flex !important;
           flex-direction: column !important;
           align-items: center !important;
-          gap: 1px !important;
+          gap: 16px !important;
+          width: 100% !important;
         }
         
         .docx-wrapper section.docx {
           background-color: white !important;
-          box-shadow: none !important;
-          margin: 0 !important;
-          width: 816px !important; /* Чистий A4 */
-          min-height: 1056px !important;
-          padding: 20mm !important; 
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+          margin: 0 auto !important;
+          width: 100% !important; 
+          max-width: 816px !important; 
           box-sizing: border-box !important;
           position: relative !important;
-          border-bottom: 1px solid #e2e8f0 !important;
+          padding: 16px !important;
         }
 
-        .docx-wrapper p {
-          margin-bottom: 0.1em !important;
+        @media (min-width: 768px) {
+          .docx-wrapper section.docx {
+            padding: 20mm !important;
+          }
+        }
+
+        .docx-wrapper table {
+          max-width: 100% !important;
+          table-layout: auto !important;
+          word-break: break-word !important;
+        }
+
+        .docx-wrapper img {
+          max-width: 100% !important;
+          height: auto !important;
         }
       `}</style>
       
-      <div ref={containerRef} className="w-full" />
+      <div ref={containerRef} className="w-full flex justify-center" />
     </div>
   );
 }

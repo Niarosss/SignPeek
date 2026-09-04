@@ -2,16 +2,28 @@ import {
   EyeIcon, 
   ShieldCheckIcon, 
   GitCommitIcon, 
-  GithubLogoIcon 
+  GithubLogoIcon,
+  ListIcon
 } from '@phosphor-icons/react';
 
-export default function Header() {
+export default function Header( { onMenuClick, hasFiles }) {
   const appVersion = import.meta.env.APP_VERSION || '0.0.0';
 
   return (
-    <header className="h-16 border-b border-slate-200 bg-white flex items-center px-8 justify-between z-20 shrink-0">
+    <header className="h-16 border-b border-slate-200 bg-white flex items-center px-4 md:px-8 justify-between z-20 shrink-0">
       
       <div className="flex items-center gap-3 select-none">
+
+        {hasFiles && (
+          <button
+            onClick={onMenuClick}
+            className="lg:hidden p-2 -ml-2 text-slate-600 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer"
+            title="Відкрити список документів"
+          >
+            <ListIcon size={24} weight="bold" />
+          </button>
+        )}
+
         <div className="relative">
           <div className="w-10 h-10 bg-slate-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
             <EyeIcon size={22} weight="bold" />

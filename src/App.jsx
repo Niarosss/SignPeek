@@ -1,10 +1,15 @@
-// src/App.jsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useFiles } from './hooks/useFiles';
+
 import Header from './components/layout/Header';
+import Sidebar from './components/layout/Sidebar';
 import WelcomeScreen from './components/layout/WelcomeScreen';
-import Workspace from './components/layout/Workspace';
 import DropOverlay from './components/layout/DropOverlay';
+
+import ViewerHost from './components/layout/ViewerHost';
+import ViewerToolbar from './components/layout/ViewerToolbar';
+import CertificateModal from './components/ui/CertificateModal';
+
 import { ImageIcon, FileTextIcon, FileCodeIcon, WarningCircleIcon } from '@phosphor-icons/react';
 
 function App() {
@@ -13,33 +18,35 @@ function App() {
     activeSignatureInfo, setActiveSignatureInfo, handleFiles, removeFile, exportFiles 
   } = useFiles();
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Закриваємо сайдбар при виборі файлу
   useEffect(() => {
-    const handlePaste = (event) => {
-      const items = event.clipboardData?.items;
+    setIsSidebarOpen(false);
+  }, [selectedFile]);
+
+
+  // Вставка з буфера (Ctrl+V)
+  useEffect(() => {
+    const handlePaste = (e) => {
+      const items = e.clipboardData?.items;
       if (!items) return;
-
-      const pastedFiles = [];
+      const pasted = [];
       for (let item of items) {
-        if (item.kind === 'file') {
-          const file = item.getAsFile();
-          if (file) pastedFiles.push(file);
-        }
+        if (item.kind === 'file') pasted.push(item.getAsFile());
       }
-
-      if (pastedFiles.length > 0) {
-        handleFiles(pastedFiles);
-      }
+      if (pasted.length > 0) handleFiles(pasted);
     };
-
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
   }, [handleFiles]);
 
   const getFileIcon = (file) => {
     if (file.isDetached) return <WarningCircleIcon size={24} weight="duotone" className="text-amber-500" />;
-    if (file.mimeType?.includes('image')) return <ImageIcon size={24} weight="duotone" className="text-indigo-500" />;
-    if (file.mimeType?.includes('pdf')) return <FileTextIcon size={24} weight="duotone" className="text-red-500" />;
-    return <FileCodeIcon size={24} weight="duotone" className="text-slate-500" />;
+    const mime = file.mimeType || "";
+    if (mime.includes('image') || ['heic', 'tiff'].includes(file.extension)) return <ImageIcon size={24} weight="duotone" className="text-indigo-500" />;
+    if (mime.includes('pdf')) return <FileTextIcon size={24} weight="duotone" className="text-red-500" />;
+    return <FileCodeIcon size={24} weight="duotone" className="text-slate-400" />;
   };
 
   const hasFiles = files.length > 0;
@@ -47,37 +54,58 @@ function App() {
   return (
     <div 
       className="h-screen flex flex-col bg-[#F8FAFC] text-slate-900 font-sans antialiased tracking-tight relative"
-      onDragEnter={(e) => {
-        e.preventDefault();
-        setIsDragging(true);
-      }}
-      onDragOver={(e) => {
-        e.preventDefault();
-      }}
+      onDragEnter={(e) => { e.preventDefault(); setIsDragging(true); }}
+      onDragOver={(e) => e.preventDefault()}
     >
-      <Header />
+      <Header onMenuClick={() => setIsSidebarOpen(true)} hasFiles={hasFiles} />
 
-      {hasFiles ? (
-        <Workspace 
-          files={files}
-          selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
-          removeFile={removeFile}
-          exportFiles={exportFiles}
-          activeSignatureInfo={activeSignatureInfo}
-          setActiveSignatureInfo={setActiveSignatureInfo}
-          getFileIcon={getFileIcon}
-        />
-      ) : (
-        <WelcomeScreen onSelect={handleFiles} />
-      )}
+      <div className={`flex-1 flex relative ${hasFiles ? 'overflow-hidden' : ''}`}>
+        
+        {hasFiles ? (
+          <>
+            {isSidebarOpen && (
+              <div 
+                className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 lg:hidden animate-in fade-in duration-300"
+                onClick={() => setIsSidebarOpen(false)}
+              />
+            )}
 
-      {isDragging && (
-        <DropOverlay 
-          onLeave={() => setIsDragging(false)} 
-          onDrop={handleFiles} 
-        />
-      )}
+            <Sidebar 
+              files={files} 
+              selectedFile={selectedFile} 
+              onSelect={setSelectedFile}
+              onAddFiles={handleFiles} 
+              onRemove={removeFile}
+              onCheckSignature={setActiveSignatureInfo}
+              getFileIcon={getFileIcon}
+              onExport={exportFiles}
+              isOpen={isSidebarOpen}
+              onClose={() => setIsSidebarOpen(false)}
+            />
+
+            <main className="flex-1 flex flex-col bg-white overflow-hidden min-w-0">
+              {selectedFile && !selectedFile.isContainer && (
+                <ViewerToolbar file={selectedFile} onRemove={removeFile} />
+              )}
+              <div className="flex-1 relative bg-slate-50/50 overflow-hidden flex items-center justify-center">
+                <ViewerHost file={selectedFile} />
+              </div>
+            </main>
+          </>
+        ) : (
+          <WelcomeScreen onSelect={handleFiles} />
+        )}
+
+        {isDragging && (
+          <DropOverlay onLeave={() => setIsDragging(false)} onDrop={handleFiles} />
+        )}
+      </div>
+
+      <CertificateModal 
+        isOpen={!!activeSignatureInfo} 
+        onClose={() => setActiveSignatureInfo(null)} 
+        info={activeSignatureInfo} 
+      />
     </div>
   );
 }

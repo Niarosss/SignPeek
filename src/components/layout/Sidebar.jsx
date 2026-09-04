@@ -1,33 +1,50 @@
-import { 
-  FileCodeIcon, 
-  CheckCircleIcon, 
-  XIcon, 
-  DownloadSimpleIcon, 
-  FileArchiveIcon,
-  CaretDownIcon 
-} from '@phosphor-icons/react';
+import { CheckCircleIcon, XIcon, DownloadSimpleIcon, FileArchiveIcon, CaretDownIcon, ArrowLeftIcon } from '@phosphor-icons/react';
 
 export default function Sidebar({ 
-  files, selectedFile, onSelect, onRemove, onCheckSignature, onExport, getFileIcon 
+  files, selectedFile, onSelect, onAddFiles, onRemove, onCheckSignature, onExport, getFileIcon, isOpen, onClose 
 }) {
+
   return (
-    <aside className="w-80 border-r border-slate-200/60 bg-white flex flex-col z-10 shrink-0 overflow-hidden">
-      <div className="p-5 shrink-0">
+    <aside className={`
+      /* Мобільні стилі */
+      fixed inset-0 z-60 w-full bg-white flex flex-col transition-transform duration-300
+      ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+      /* Десктоп стилі */
+      lg:relative lg:translate-x-0 lg:w-80 lg:z-10 lg:border-r lg:border-slate-200/60
+    `}>
+      <div className="p-5 shrink-0 flex flex-col gap-4 border-b border-slate-50 lg:border-none">
+        <div className="flex items-center justify-between lg:hidden">
+           <button onClick={onClose} className="p-2 -ml-2 text-slate-400 active:scale-90 transition-transform">
+              <ArrowLeftIcon size={24} weight="bold" />
+           </button>
+           <span className="font-bold uppercase tracking-widest text-[10px] text-slate-400">Документи</span>
+           <div className="w-10" />
+        </div>
+
         <button 
-          onClick={() => document.getElementById('fileInput').click()}
-          className="w-full bg-slate-600 hover:bg-slate-700 text-white py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+          onClick={() => document.getElementById('sidebarFileInput').click()} 
+          className="w-full bg-slate-600 hover:bg-slate-700 text-white py-3 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer transition-all"
         >
           <FileArchiveIcon size={18} weight="bold" />
-          <span className="text-xs font-bold uppercase tracking-widest leading-none">
-            Відкрити файл
-          </span>
+          <span className="translate-y-[0.5px]">Відкрити файл</span>
         </button>
-        <input id="fileInput" type="file" multiple hidden onChange={(e) => onSelect(e.target.files)} />
+        <input 
+          id="sidebarFileInput" 
+          type="file" 
+          multiple 
+          hidden 
+          onChange={(e) => {
+            if (e.target.files?.length > 0) {
+              onAddFiles(e.target.files);
+              e.target.value = '';
+            }
+          }}
+        />
       </div>
       
       <div className="flex-1 overflow-y-auto px-2 py-2 custom-scrollbar">
         {files.length === 0 ? (
-          <div className="text-center py-20 opacity-20 flex flex-col items-center select-none">
+          <div className="text-center py-20 opacity-20 flex flex-col items-center">
              <FileArchiveIcon size={40} weight="thin" className="mb-2" />
              <p className="text-[10px] font-bold uppercase tracking-widest">Список порожній</p>
           </div>
