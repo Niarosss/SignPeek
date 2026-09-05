@@ -1,38 +1,42 @@
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import pkg from './package.json' with { type: 'json' }
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler', {}]],
+      },
+    }),
+
     tailwindcss(),
-    babel({ presets: [reactCompilerPreset()] }),
+
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
-      manifest: false, 
+      manifest: false,
       workbox: {
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, 
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}']
-      }
-    })
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+      },
+    }),
   ],
+
   define: {
     'import.meta.env.APP_VERSION': JSON.stringify(pkg.version),
   },
+
   optimizeDeps: {
     include: ['jszip', 'docx-preview'],
   },
+
   build: {
     target: 'es2022',
     chunkSizeWarningLimit: 2000,
-    minify: 'esbuild',
-    commonjsOptions: {
-      include: [/jszip/, /docx-preview/],
-    },
+
     rollupOptions: {
       output: {
         codeSplitting: {
@@ -67,5 +71,5 @@ export default defineConfig({
         },
       },
     },
-  }
+  },
 })
