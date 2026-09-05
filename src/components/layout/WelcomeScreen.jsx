@@ -12,7 +12,7 @@ import Footer from './Footer';
 
 export default function WelcomeScreen({ onSelect }) {
   return (
-    <div className="w-full relative">
+    <main className="w-full relative">
       
       <section className="relative min-h-[calc(100dvh-64px)] w-full flex flex-col items-center justify-center px-4 py-8 xl:[@media(min-height:850px)]:py-16 bg-[#F8FAFC] z-20 shadow-2xl shrink-0 border-b border-slate-100">
       
@@ -31,14 +31,14 @@ export default function WelcomeScreen({ onSelect }) {
             <h1 className="text-4xl xl:[@media(min-height:850px)]:text-5xl font-black text-slate-900 tracking-tighter leading-none">
               Sign<span className="text-slate-600">Peek</span>
             </h1>
-            <p className="max-w-md text-slate-600 text-sm xl:[@media(min-height:850px)]:text-lg font-semibold leading-snug px-4">
+            <h2 className="max-w-md text-slate-600 text-sm xl:[@media(min-height:850px)]:text-lg font-semibold leading-snug px-4">
               Миттєвий та безпечний перегляд підписаних документів прямо у вашому браузері
-            </p>
+            </h2>
           </div>
 
           <div className="w-full flex flex-col items-center gap-5 xl:[@media(min-height:850px)]:gap-8">
             
-            <div className="flex flex-wrap justify-center items-center gap-5 xl:[@media(min-height:850px)]:gap-10 opacity-40 select-none">
+            <div className="flex flex-wrap justify-center items-center gap-5 xl:[@media(min-height:850px)]:gap-10 select-none">
               <FormatHint icon={FilePdfIcon} label="PDF" />
               <FormatHint icon={FileDocIcon} label="DOCX" />
               <FormatHint icon={FileZipIcon} label="ASIC-E" />
@@ -55,19 +55,19 @@ export default function WelcomeScreen({ onSelect }) {
               </button>
             )}
 
-            <div className="flex items-center justify-center gap-1 md:gap-2 text-slate-500/80 text-[10px] font-semibold uppercase tracking-[0.2em] xl:[@media(min-height:850px)]:tracking-[0.25em] select-none">
+            <div className="flex items-center justify-center gap-1 md:gap-2 text-slate-500 text-[10px] font-semibold uppercase tracking-[0.2em] xl:[@media(min-height:850px)]:tracking-[0.25em] select-none">
               Перетягніть
               
-              <span className="opacity-20 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
+              <span className="opacity-30 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
               
               <div className="flex items-center gap-1.5">
                 Вставте
-                <span className="text-[9px] font-mono bg-slate-200/70 h-4 text-slate-500 px-1 rounded border border-slate-300/40 lowercase tracking-normal flex items-center">
-                  ctrl+v
+                <span className="text-[9px] font-mono bg-slate-100 h-4 text-slate-600 px-1 rounded border lowercase border-slate-300/40 tracking-normal flex items-center">
+                  Ctrl+V
                 </span>
               </div>
 
-              <span className="opacity-20 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
+              <span className="opacity-30 font-light text-base xl:[@media(min-height:850px)]:text-lg">/</span>
 
               Оберіть файл
             </div>
@@ -103,6 +103,6 @@ export default function WelcomeScreen({ onSelect }) {
           <Footer />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

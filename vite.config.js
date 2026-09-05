@@ -27,7 +27,9 @@ export default defineConfig({
     include: ['jszip', 'docx-preview'],
   },
   build: {
+    target: 'es2022',
     chunkSizeWarningLimit: 2000,
+    minify: 'esbuild',
     commonjsOptions: {
       include: [/jszip/, /docx-preview/],
     },

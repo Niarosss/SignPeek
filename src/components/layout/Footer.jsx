@@ -49,18 +49,18 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center md:items-end gap-6 md:gap-8">
           
-          <div className="text-center md:text-left space-y-3 md:space-y-4">
+          <div className="text-center md:text-left space-y-3 md:space-y-6">
             <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter select-none leading-none">
-              <span className="text-slate-50 opacity-70">Sign</span>
-              <span className="text-slate-500 opacity-70">Peek</span>
+              <span className="text-slate-300 ">Sign</span>
+              <span className="text-slate-700">Peek</span>
             </h2>
             
-            <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-3 gap-y-1 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500">
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-x-3 gap-y-1 text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400">
               <span>Open Source Project</span>
-              <span className="opacity-20">/</span>
+              <span className="text-slate-500">/</span>
               <span>MIT License</span>
-              <span className="opacity-20">/</span>
-              <span className="text-slate-400">
+              <span className="text-slate-500">/</span>
+              <span className="text-slate-200">
                 © {startYear === currentYear ? startYear : `${startYear}–${currentYear}`} SignPeek
               </span>
             </div>
@@ -75,13 +75,13 @@ export default function Footer() {
             >
               <GithubLogoIcon size={20} weight="bold" className="group-hover:rotate-12 transition-transform" />
               <div className="text-left">
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-500 leading-none mb-1">Github</p>
+                <p className="text-[9px] font-black uppercase tracking-widest text-slate-300 leading-none mb-1">Github</p>
                 <p className="text-[10px] font-bold tracking-wider leading-none uppercase">v{appVersion} rdy</p>
               </div>
             </a>
             
-            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-500">
-              Developed by <span className="text-slate-300">Niaros</span>
+            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
+              Developed by <span className="text-slate-100">Niaros</span>
             </p>
           </div>
         </div>

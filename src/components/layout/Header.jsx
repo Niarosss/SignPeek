@@ -37,9 +37,9 @@ export default function Header( { onMenuClick, hasFiles }) {
           <h1 className="font-black text-xl leading-none tracking-tighter text-slate-800">
             Sign<span className="text-slate-600 font-black">Peek</span>
           </h1>
-          <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1 leading-none">
+          <h2 className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1 leading-none">
             Більше ніж просто перегляд документів
-          </p>
+          </h2>
         </div>
       </div>
 
@@ -49,14 +49,14 @@ export default function Header( { onMenuClick, hasFiles }) {
         rel="noopener noreferrer"
         className="flex items-center gap-4 group cursor-pointer"
       >
-        <div className="hidden md:flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
-          <GitCommitIcon size={14} weight="bold" className="text-slate-400" />
-          <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-600 mt-1">
+        <div className="hidden md:flex items-center gap-2 text-slate-600 group-hover:text-slate-800 transition-opacity ">
+          <GitCommitIcon size={14} weight="bold" />
+          <span className="text-[9px] font-black uppercase tracking-[0.2em] mt-0.5">
             v{appVersion} rdy
           </span>
         </div>
         
-        <div className="p-2 rounded-lg bg-slate-50 text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
+        <div className="p-2 rounded-lg bg-slate-50 text-slate-500 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
           <GithubLogoIcon size={18} weight="bold" />
         </div>
       </a>
