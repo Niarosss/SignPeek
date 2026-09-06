@@ -1,24 +1,39 @@
-// src/components/viewers/PdfViewer.jsx
-
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { useState, useEffect } from 'react';
-import { CircleNotchIcon, MagnifyingGlassPlusIcon, MagnifyingGlassMinusIcon, ArrowsInLineHorizontalIcon } from '@phosphor-icons/react';
-import ToolbarButton from '../ui/ToolbarButton';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
+import { 
+  CircleNotchIcon, 
+  MagnifyingGlassPlusIcon, 
+  MagnifyingGlassMinusIcon, 
+  ArrowsInLineHorizontalIcon 
+} from '@phosphor-icons/react';
+import ToolbarButton from '../ui/ToolbarButton';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 export default function PdfViewer({ file }) {
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(1.0);
-
-  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const scrollContainerRef = useRef(null);
 
   useEffect(() => {
-    const handleResize = () => setContainerWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    if (!scrollContainerRef.current) return;
+
+    const updateWidth = () => {
+      if (scrollContainerRef.current) {
+        setContainerWidth(scrollContainerRef.current.clientWidth);
+      }
+    };
+
+    updateWidth();
+    const resizeObserver = new ResizeObserver(updateWidth);
+    resizeObserver.observe(scrollContainerRef.current);
+
+    return () => resizeObserver.disconnect();
   }, []);
 
   useEffect(() => {
@@ -26,15 +41,18 @@ export default function PdfViewer({ file }) {
   }, [file.url]);
 
   const documentOptions = useMemo(() => ({
-    cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
-    cMapPacked: true,
-    verbosity: 0 
-  }), []);
+      cMapUrl: new URL('pdfjs-dist/cmaps/', import.meta.url).toString() + '/',
+      cMapPacked: true,
+      verbosity: 0,
+    }), []);
+
+  const pageWidth = containerWidth > 0 && containerWidth < 848 
+    ? containerWidth - 32 
+    : undefined;
 
   return (
     <div className="relative w-full h-full bg-slate-200/50 flex flex-col overflow-hidden">
-
-      <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/60 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1 md:p-1.5">
+      <div className="absolute bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 bg-white/70 backdrop-blur shadow-2xl border border-slate-200 rounded-2xl p-1 md:p-1.5">
         <ToolbarButton 
           onClick={() => setScale(s => Math.max(s - 0.2, 0.4))} 
           icon={<MagnifyingGlassMinusIcon size={20} weight="bold" />} 
@@ -66,7 +84,7 @@ export default function PdfViewer({ file }) {
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto scroll-smooth custom-scrollbar p-4 md:p-6">
         <Document
           key={file.url}
           file={file.url}
@@ -74,14 +92,14 @@ export default function PdfViewer({ file }) {
           options={documentOptions}
           loading={<LoadingSpinner />}
         >
-          {numPages && Array.from(new Array(numPages), (el, index) => (
+          {numPages && Array.from(new Array(numPages), (_, index) => (
             <div key={`${file.id}-page-${index + 1}`} className="mb-8 flex justify-center">
               <div className="shadow-2xl bg-white relative">
                 <Page 
                   pageNumber={index + 1} 
                   scale={scale}
-                  width={containerWidth < 816 ? containerWidth - 32 : undefined}
-                  renderTextLayer={false}
+                  width={pageWidth}
+                  renderTextLayer={true}
                   renderAnnotationLayer={false}
                   loading=""
                 />

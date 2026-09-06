@@ -16,11 +16,11 @@ export default defineConfig({
 
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
+      injectRegister: 'script-defer',
       manifest: false,
       workbox: {
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,bcmap,properties}'],
       },
     }),
   ],
@@ -29,13 +29,10 @@ export default defineConfig({
     'import.meta.env.APP_VERSION': JSON.stringify(pkg.version),
   },
 
-  optimizeDeps: {
-    include: ['jszip', 'docx-preview'],
-  },
-
   build: {
     target: 'es2022',
     chunkSizeWarningLimit: 2000,
+    modulePreload: false,
 
     rollupOptions: {
       output: {

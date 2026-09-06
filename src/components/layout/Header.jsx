@@ -47,6 +47,7 @@ export default function Header( { onMenuClick, hasFiles }) {
         href="https://github.com/Niarosss/SignPeek" 
         target="_blank" 
         rel="noopener noreferrer"
+        aria-label="Перейти на GitHub репозиторій SignPeek"
         className="flex items-center gap-4 group cursor-pointer"
       >
         <div className="hidden md:flex items-center gap-2 text-slate-600 group-hover:text-slate-800 transition-opacity ">

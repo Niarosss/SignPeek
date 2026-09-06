@@ -9,7 +9,6 @@ import {
   CircleNotchIcon
 } from '@phosphor-icons/react';
 
-// Ліниве завантаження важких двигунів
 const PdfViewer = lazy(() => import('../engines/PdfViewer'));
 const DocxViewer = lazy(() => import('../engines/DocxViewer'));
 const XlsxViewer = lazy(() => import('../engines/XlsxViewer'));
