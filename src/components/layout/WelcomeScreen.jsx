@@ -5,7 +5,8 @@ import {
   FileDocIcon,
   FileZipIcon,
   CertificateIcon,
-  EyeIcon 
+  EyeIcon,
+  FileLockIcon
 } from '@phosphor-icons/react';
 import FormatHint from '../ui/FormatHint';
 import Footer from './Footer';
@@ -40,6 +41,7 @@ export default function WelcomeScreen({ onSelect }) {
             
             <div className="flex flex-wrap justify-center items-center gap-5 xl:[@media(min-height:850px)]:gap-10 select-none">
               <FormatHint icon={FilePdfIcon} label="PDF" />
+              <FormatHint icon={FileLockIcon} label="SIG" />
               <FormatHint icon={FileDocIcon} label="DOCX" />
               <FormatHint icon={FileZipIcon} label="ASIC-E" />
               <FormatHint icon={CertificateIcon} label="P7S" />

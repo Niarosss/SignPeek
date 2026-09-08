@@ -1,8 +1,31 @@
-import { CheckCircleIcon, XIcon, DownloadSimpleIcon, FileArchiveIcon, CaretDownIcon, ArrowLeftIcon } from '@phosphor-icons/react';
+import { useState } from 'react';
+import { 
+  CheckCircleIcon, 
+  XIcon, 
+  DownloadSimpleIcon, 
+  FileArchiveIcon, 
+  CaretDownIcon, 
+  ArrowLeftIcon 
+} from '@phosphor-icons/react';
 
 export default function Sidebar({ 
   files, selectedFile, onSelect, onAddFiles, onRemove, onCheckSignature, onExport, getFileIcon, isOpen, onClose 
 }) {
+  const [collapsedContainers, setCollapsedContainers] = useState(new Set());
+
+  const toggleContainer = (containerId) => {
+    setCollapsedContainers(prev => {
+      const next = new Set(prev);
+      if (next.has(containerId)) {
+        next.delete(containerId);
+      } else {
+        next.add(containerId);
+      }
+      return next;
+    });
+  };
+
+  let hiddenDepth = null;
 
   return (
     <aside className={`
@@ -50,11 +73,25 @@ export default function Sidebar({
           </div>
         ) : (
           files.map(file => {
+            if (hiddenDepth !== null && file.depth <= hiddenDepth) {
+              hiddenDepth = null;
+            }
+
+            if (hiddenDepth !== null) {
+              return null;
+            }
+
             const isSelected = selectedFile?.id === file.id;
             const depthPadding = file.depth * 1.25 + 0.75;
             
             // --- КОНТЕЙНЕР ---
             if (file.isContainer) {
+              const isCollapsed = collapsedContainers.has(file.id);
+
+              if (isCollapsed) {
+                hiddenDepth = file.depth;
+              }
+
               return (
                 <div key={file.id} className="mt-6 mb-3 px-3 group relative" style={{ paddingLeft: `${depthPadding}rem` }}>
                   {file.depth > 0 && (
@@ -69,7 +106,21 @@ export default function Sidebar({
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <CaretDownIcon size={14} weight="bold" className="text-slate-300" />
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleContainer(file.id);
+                      }}
+                      className="p-1 -ml-1 text-slate-400 hover:text-slate-600 active:scale-90 transition-transform cursor-pointer"
+                      title={isCollapsed ? "Розгорнути" : "Згорнути"}
+                    >
+                      <CaretDownIcon 
+                        size={14} 
+                        weight="bold" 
+                        className={`transition-transform duration-200 ${isCollapsed ? '-rotate-90' : 'rotate-0'}`} 
+                      />
+                    </button>
                     
                     <div className="flex items-center gap-1.5">
                       {file.isSigned && (
@@ -92,7 +143,7 @@ export default function Sidebar({
 
                     <button 
                       onClick={(e) => { e.stopPropagation(); onRemove(file.id); }} 
-                      className="ml-auto md:opacity-0 md:group-hover:opacity-100 p-1 text-slate-300 hover:text-red-500 transition-all"
+                      className="ml-auto md:opacity-0 md:group-hover:opacity-100 p-1 text-slate-300 hover:text-red-500 transition-all cursor-pointer"
                     >
                       <XIcon size={14} weight="bold" />
                     </button>
@@ -113,10 +164,9 @@ export default function Sidebar({
 
                 <div 
                   onClick={() => onSelect(file)}
-                  className='
-                    flex items-center gap-3 pl-3 h-15 transition-all mb-1'  
+                  className='flex items-center gap-3 pl-3 h-15 transition-all mb-1 cursor-pointer'  
                 >
-                  {/* Іконка файлу */}
+
                   <div className={`
                     shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all
                     ${isSelected ? 'bg-white shadow-md text-slate-600 border border-slate-100' : 'bg-white border border-slate-100 text-slate-400 shadow-sm'}
@@ -124,7 +174,6 @@ export default function Sidebar({
                     {getFileIcon(file)}
                   </div>
 
-                  {/* Текст */}
                   <div className="flex-1 min-w-0 overflow-hidden">
                     <div className="h-5 flex items-center overflow-hidden whitespace-nowrap">
                       <p className={`
@@ -143,13 +192,13 @@ export default function Sidebar({
                   <div className="flex items-center md:opacity-0 md:group-hover:opacity-100 transition-all gap-0.5 ml-auto">
                     <button
                       onClick={(e) => { e.stopPropagation(); onExport(file.id); }}
-                      className="p-1.5 text-slate-400 hover:text-slate-600 transition-all active:scale-90"
+                      className="p-1.5 text-slate-400 hover:text-slate-600 transition-all active:scale-90 cursor-pointer"
                     >
                       <DownloadSimpleIcon size={18} weight="bold" />
                     </button>
                     <button 
                       onClick={(e) => { e.stopPropagation(); onRemove(file.id); }} 
-                      className="p-1.5 text-slate-300 hover:text-red-500 transition-all active:scale-90"
+                      className="p-1.5 text-slate-300 hover:text-red-500 transition-all active:scale-90 cursor-pointer"
                     >
                       <XIcon size={18} weight="bold" />
                     </button>

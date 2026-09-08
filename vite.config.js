@@ -23,6 +23,30 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,bcmap,properties}'],
       },
     }),
+    {
+      name: 'inject-manrope-preload',
+      apply: 'build',
+      transformIndexHtml(html, ctx) {
+        if (!ctx.bundle) return html;
+        const cyrillicFont = Object.keys(ctx.bundle).find(
+          (name) => name.includes('manrope-cyrillic') && name.endsWith('.woff2')
+        );
+        const latinFont = Object.keys(ctx.bundle).find(
+          (name) => name.includes('manrope-latin') && name.endsWith('.woff2')
+        );
+
+        const preloadLinks = [
+          cyrillicFont && `<link rel="preload" href="/${cyrillicFont}" as="font" type="font/woff2" crossorigin="anonymous">`,
+          latinFont && `<link rel="preload" href="/${latinFont}" as="font" type="font/woff2" crossorigin="anonymous">`,
+        ]
+          .filter(Boolean)
+          .join('\n  ');
+
+        if (!preloadLinks) return html;
+
+        return html.replace('</head>', `  ${preloadLinks}\n</head>`);
+      },
+    },
   ],
 
   define: {
@@ -32,41 +56,5 @@ export default defineConfig({
   build: {
     target: 'es2022',
     chunkSizeWarningLimit: 2000,
-    modulePreload: false,
-
-    rollupOptions: {
-      output: {
-        codeSplitting: {
-          minSize: 10000,
-          groups: [
-            {
-              name: 'vendor-pdfjs',
-              test: /[\\/]node_modules[\\/]pdfjs-dist/,
-              priority: 110,
-            },
-            {
-              name: 'vendor-crypto',
-              test: /[\\/]node_modules[\\/](pkijs|asn1js)/,
-              priority: 100,
-            },
-            {
-              name: 'vendor-viewers',
-              test: /[\\/]node_modules[\\/](react-pdf|docx-preview|xlsx)/,
-              priority: 90,
-            },
-            {
-              name: 'vendor-icons',
-              test: /[\\/]node_modules[\\/]@phosphor-icons/,
-              priority: 80,
-            },
-            {
-              name: 'vendor',
-              test: /[\\/]node_modules[\\/]/,
-              priority: 10,
-            },
-          ],
-        },
-      },
-    },
   },
 })

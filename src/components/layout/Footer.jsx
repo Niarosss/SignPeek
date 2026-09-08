@@ -71,7 +71,7 @@ export default function Footer() {
               href="https://github.com/Niarosss/SignPeek" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Перейти на GitHub репозиторій SignPeek"
+              aria-label="GitHub репозиторій SignPeek"
               className="flex items-center gap-3 bg-white/5 hover:bg-white/10 active:scale-95 px-5 py-2.5 rounded-2xl transition-all border border-white/5 group shadow-lg"
             >
               <GithubLogoIcon size={20} weight="bold" className="group-hover:rotate-12 transition-transform" />

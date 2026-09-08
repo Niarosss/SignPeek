@@ -17,7 +17,6 @@ const ImageViewer = lazy(() => import('../engines/ImageViewer'));
 export default function ViewerHost({ file }) {
   if (!file) return null;
 
-  // Визначаємо, що саме рендерити
   const getContent = () => {
     if (file.isContainer) {
       return <ContainerInfo file={file} />;
@@ -56,14 +55,11 @@ export default function ViewerHost({ file }) {
   };
 
   return (
-    // Suspense обов'язково має огортати результат виклику getContent()
     <Suspense fallback={<LoadingPlaceholder />}>
       {getContent()}
     </Suspense>
   );
 }
-
-// --- Допоміжні компоненти (винесені вниз для чистоти) ---
 
 function LoadingPlaceholder() {
   return (

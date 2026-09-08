@@ -71,8 +71,8 @@ export async function processIncomingFile(file, parentId = null, depth = 0) {
     return results;
   }
 
-  // 2. ОБРОБКА ПІДПИСІВ (P7S / P7M) ЯК КОНТЕЙНЕРІВ
-  if (['p7s', 'p7m'].includes(extension)) {
+  // ОБРОБКА ПІДПИСІВ (P7S / P7M / SIG) ЯК КОНТЕЙНЕРІВ
+  if (['p7s', 'p7m', 'sig'].includes(extension)) {
     const containerId = crypto.randomUUID();
 
     const { extractSignatureMetadata } = await import('./cryptoParser');
@@ -91,7 +91,7 @@ export async function processIncomingFile(file, parentId = null, depth = 0) {
     });
 
     if (sigData.success && sigData.type === 'attached' && sigData.content) {
-      const cleanName = name.replace(/\.p7s$|\.p7m$/i, '');
+      const cleanName = name.replace(/\.(p7s|p7m|sig)$/i, '');
       const children = await processIncomingFile({ name: cleanName, buffer: sigData.content }, containerId, depth + 1);
       results = [...results, ...children];
     }
