@@ -1,10 +1,12 @@
 [English](./README.md) | [Українська](./README.uk.md)
 
-# SignPeek 👁️✅
+# SignPeek ✅
 
 SignPeek is a fast, privacy-focused web application for instantly previewing digitally signed documents and exploring cryptographic containers directly in your browser. It is designed to make working with signed files simple: drop a file, inspect its contents and signatures, and preview the embedded documents without uploading anything to a server.
 
-🚀 **Live Demo:** [signpeek.niaros.dev](https://signpeek.niaros.dev)
+## Demo
+
+👉 [**View the live version**](https://signpeek.niaros.dev)
 
 ## Features
 
