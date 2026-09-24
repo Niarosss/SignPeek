@@ -33,7 +33,7 @@ export default function WelcomeScreen({ onSelect }) {
               Sign<span className="text-slate-600">Peek</span>
             </h1>
             <h2 className="max-w-md text-slate-600 text-sm xl:[@media(min-height:850px)]:text-lg font-semibold leading-snug px-4">
-              Миттєвий та безпечний перегляд підписаних документів прямо у вашому браузері
+              Миттєвий та безпечний перегляд підписаних документів прямо у Вашому браузері
             </h2>
           </div>
 

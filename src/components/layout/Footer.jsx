@@ -24,26 +24,26 @@ export default function Footer() {
           <FeatureItem 
             icon={ShieldStarIcon} 
             iconColor="text-emerald-400"
-            title="Приватність" 
-            desc="Файли не залишають пристрій" 
+            title="Конфіденційність" 
+            desc="Файли обробляються локально і не залишають пристрій" 
           />
           <FeatureItem 
             icon={MagnifyingGlassIcon} 
             iconColor="text-slate-400"
-            title="Деталі підпису" 
-            desc="Перевірка сертифікатів та ПІБ" 
+            title="Аналіз підписів" 
+            desc="Перевірка сертифікатів та ідентифікація підписувача" 
           />
           <FeatureItem 
             icon={FileZipIcon} 
             iconColor="text-amber-500"
-            title="Розпаковка" 
-            desc="Вилучення вмісту з контейнерів" 
+            title="Розпакування" 
+            desc="Вилучення документів із захищених контейнерів" 
           />
           <FeatureItem 
             icon={LightningIcon} 
             iconColor="text-yellow-400"
-            title="Швидкість" 
-            desc="Миттєвий перегляд вмісту" 
+            title="Швидкодія" 
+            desc="Миттєвий перегляд вмісту безпосередньо у браузері" 
           />
         </div>
 

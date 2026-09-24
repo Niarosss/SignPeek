@@ -42,21 +42,47 @@
 
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "SignPeek",
-        "url": "https://signpeek.niaros.dev/",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "All",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "UAH"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          "name": "SignPeek",
+          "url": "https://signpeek.niaros.dev/",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All",
+          "description": "Веб-додаток для безпечного перегляду підписаних електронних документів та контейнерів у форматі P7S та ASiC-E без передачі файлів на сервер."
         },
-        "description": "Веб-додаток для безпечного перегляду підписаних електронних документів та контейнерів у форматі P7S та ASiC-E без передачі файлів на сервер."
-      }
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Як відкрити файл P7S або ASiC-E онлайн?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Для перегляду просто перетягніть підписаний файл (P7S, ASiC-E, PDF, DOCX) у вікно браузера на сайті SignPeek. Документ та інформація про кваліфікований електронний підпис (КЕП/ЕЦП) відобразяться миттєво."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Чи передаються мої документи на сторонні сервери під час перегляду?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ні, сервіс SignPeek працює виключно локально у вашому браузері. Ваші конфіденційні файли не завантажуються в інтернет і не зберігаються на жодних серверах."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Які формати електронних підписів підтримує SignPeek?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "SignPeek підтримує розпакування та перевірку підписаних контейнерів ASiC-E, файлів P7S (CAdES, XAdES), архівів ZIP, а також перегляд документів PDF із вбудованим підписом."
+              }
+            }
+          ]
+        }
+      ]
     </script>
   </head>
   <body>
@@ -65,6 +91,13 @@
 
     <noscript>
       <div style="padding: 24px; font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; line-height: 1.5;">
+        <div style="padding: 16px; background-color: #f1f5f9; border-radius: 12px; margin-bottom: 24px; text-align: center;">
+          <h2 style="margin-top: 0; font-size: 18px; color: #0f172a;">Для роботи SignPeek потрібен JavaScript</h2>
+          <p style="margin-bottom: 0; font-size: 14px; color: #475569;">
+            Сервіс обробляє підписані файли виключно локально у вашому браузері, щоб гарантувати конфіденційність без передачі даних на сервер. Будь ласка, увімкніть виконання скриптів для перегляду документів.
+          </p>
+        </div>
+
         <h1>SignPeek — Сервіс миттєвого перегляду підписаних документів</h1>
         <p>SignPeek дозволяє безпечно переглядати файли P7S, ASiC-E, PDF, DOCX та інші підписані контейнери онлайн.</p>
         
@@ -79,9 +112,21 @@
         <h2>Як відкрити файл P7S або ASiC-E?</h2>
         <p>Перетягніть ваш підписаний файл у вікно браузера, скористайтеся комбінацією Ctrl+V або оберіть файл через кнопку завантаження.</p>
         
+        <h2>Чому варто використовувати SignPeek?</h2>
+        
         <article>
           <h3>Конфіденційність та безпека</h3>
-          <p>Вся криптографія та рендеринг відбуваються локально в оперативній пам'яті вашого браузера.</p>
+          <p>Всі операції з криптографії та розпакування виконуються локально. Ваші документи не завантажуються на наші сервери, що унеможливлює витік конфіденційних даних.</p>
+        </article>
+        
+        <article>
+          <h3>Офлайн-робота</h3>
+          <p>Завдяки технології PWA, після першого завантаження сторінки ви можете перевіряти підписи та відкривати файли (P7S, ASiC-E) навіть без підключення до інтернету.</p>
+        </article>
+
+        <article>
+          <h3>Відкритий вихідний код</h3>
+          <p>Проєкт є повністю прозорим (Open Source). Кожен може переглянути вихідний код на GitHub та переконатися у відсутності прихованих трекерів чи скриптів збору даних.</p>
         </article>
       </div>
     </noscript>
